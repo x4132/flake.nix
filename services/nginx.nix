@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfProxyExtraConfig = ''
@@ -31,25 +36,38 @@ let
     proxy_set_header X-Forwarded-Proto $scheme;
   '';
 
-  mkVirtualHost = { domain, port, extraLocations ? {} }:
+  mkVirtualHost =
+    {
+      domain,
+      port,
+      extraLocations ? { },
+    }:
     {
       enableACME = false;
       forceSSL = true;
 
-      sslCertificate = if (builtins.match ".*cocogoat.club" domain) != null
-        then "/etc/ssl/cocogoat.club.pem"
-        else "/etc/ssl/${domain}.pem";
+      sslCertificate =
+        if (builtins.match ".*cocogoat.club" domain) != null then
+          "/etc/ssl/cocogoat.club.pem"
+        else
+          "/etc/ssl/${domain}.pem";
 
-      sslCertificateKey = if (builtins.match ".*cocogoat.club" domain) != null
-        then "/etc/ssl/cocogoat.club.key"
-        else "/etc/ssl/${domain}.key";
+      sslCertificateKey =
+        if (builtins.match ".*cocogoat.club" domain) != null then
+          "/etc/ssl/cocogoat.club.key"
+        else
+          "/etc/ssl/${domain}.key";
 
-      locations = if port != null then {
-        "/" = {
-          proxyPass = "http://localhost:${toString port}";
-          extraConfig = cfHostFw;
-        };
-      } else {} // extraLocations;
+      locations =
+        if port != null then
+          {
+            "/" = {
+              proxyPass = "http://localhost:${toString port}";
+              extraConfig = cfHostFw;
+            };
+          }
+        else
+          { } // extraLocations;
     };
 in
 {
@@ -57,10 +75,21 @@ in
     enable = true;
 
     virtualHosts = {
-      "x4132.dev" = mkVirtualHost {
-        domain = "x4132.dev";
-        port = 20080;
-      } // { extraConfig = cfProxyExtraConfig; };
+      "_" = {
+        default = true;
+        extraConfig = ''
+          return 444;
+        '';
+      };
+
+      "x4132.dev" =
+        mkVirtualHost {
+          domain = "x4132.dev";
+          port = 20080;
+        }
+        // {
+          extraConfig = cfProxyExtraConfig;
+        };
 
       "cocogoat.club" = mkVirtualHost {
         domain = "cocogoat.club";
