@@ -75,11 +75,22 @@ in
     enable = true;
 
     virtualHosts = {
-      "_" = {
+      "default" = {
         default = true;
-        extraConfig = ''
-          return 444;
-        '';
+        forceSSL = true;
+        enableACME = false;
+
+        sslCertificate = "/etc/ssl/cocogoat.club.pem";
+
+        sslCertificateKey = "/etc/ssl/cocogoat.club.key";
+
+        locations = {
+          "/" = {
+            extraConfig = ''
+              return 444;
+            '';
+          };
+        };
       };
 
       "x4132.dev" =
