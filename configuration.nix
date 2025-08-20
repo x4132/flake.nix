@@ -178,13 +178,14 @@
         withCloudUi = true;
       };
     };
+
+    qemuGuest.enable = true;
   };
 
   networking.firewall = {
     enable = true;
     allowPing = true;
     allowedTCPPorts = [
-      22
       80
       443
       8080
