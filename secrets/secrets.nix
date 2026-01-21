@@ -13,4 +13,10 @@ in
     msvc
     system1
   ];
+
+  "vaultwarden.age".publicKeys = [
+    msvc
+    system1
+  ];
+
 }
