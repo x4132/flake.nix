@@ -2,7 +2,12 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Use the GRUB 2 boot loader.
@@ -19,7 +24,11 @@
   users.users.msvc = {
     isNormalUser = true;
     group = "msvc";
-    extraGroups = [ "wheel" "docker" "config_editors" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+      "config_editors"
+    ];
     # packages = with pkgs; [
     # ];
     openssh.authorizedKeys.keys = [
@@ -76,12 +85,18 @@
     bun
     nixd
     nil
+    python312
   ];
 
-  nixpkgs.config = { allowUnfree = true; };
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
   # Nix Settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.download-buffer-size = 524288000;
 
   # Time
@@ -123,7 +138,10 @@
       enable = true;
       dnssec = "false";
       domains = [ "~." ];
-      fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
+      fallbackDns = [
+        "1.1.1.1#one.one.one.one"
+        "1.0.0.1#one.one.one.one"
+      ];
     };
 
     jellyfin.enable = true;
@@ -139,8 +157,7 @@
         MICROBIN_DEFAULT_EXPIRY = "never";
         MICROBIN_ETERNAL_PASTA = true;
       };
-      passwordFile =
-        config.age.secrets.microbin.path; # set MICROBIN_ADMIN_USERNAME MICROBIN_ADMIN_PASSWORD MICROBIN_UPLOADER_PASSWORD
+      passwordFile = config.age.secrets.microbin.path; # set MICROBIN_ADMIN_USERNAME MICROBIN_ADMIN_PASSWORD MICROBIN_UPLOADER_PASSWORD
     };
 
     miniflux = {
@@ -149,15 +166,13 @@
         LISTEN_ADDR = "0.0.0.0:33080";
         # DATABASE_URL = "postgres://miniflux:miniflux@localhost/miniflux?sslmode=disable";
       };
-      adminCredentialsFile =
-        config.age.secrets.miniflux.path; # set ADMIN_USERNAME ADMIN_PASSSWORD
+      adminCredentialsFile = config.age.secrets.miniflux.path; # set ADMIN_USERNAME ADMIN_PASSSWORD
     };
 
     vaultwarden = {
       enable = true;
       backupDir = "/var/local/vaultwarden/backup";
-      environmentFile =
-        config.age.secrets.vaultwarden.path; # has ADMIN_PASSWORD and SMTP configuration
+      environmentFile = config.age.secrets.vaultwarden.path; # has ADMIN_PASSWORD and SMTP configuration
       config = {
         DOMAIN = "https://vaultwarden.cocogoat.club";
         SIGNUPS_ALLOWED = false;
@@ -170,7 +185,9 @@
 
     uptime-kuma = {
       enable = true;
-      settings = { PORT = "30081"; };
+      settings = {
+        PORT = "30081";
+      };
     };
 
     netdata = {
@@ -184,7 +201,11 @@
   networking.firewall = {
     enable = true;
     allowPing = true;
-    allowedTCPPorts = [ 80 443 8080 ];
+    allowedTCPPorts = [
+      80
+      443
+      8080
+    ];
     allowedUDPPorts = [ ];
     checkReversePath = "loose";
   };
