@@ -85,7 +85,7 @@
     bun
     nixd
     nil
-    python312
+    python3Minimal
   ];
 
   nixpkgs.config = {
