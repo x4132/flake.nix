@@ -20,6 +20,19 @@
       extraOptions = ["--cap-add=NET_ADMIN"];
     };
 
+    authentik-server = {
+      image = "ghcr.io/goauthentik/server:2026.2.2";
+      cmd = [ "server" ];
+      environmentFiles = [ config.age.secrets.authentik.path ];
+      ports = [ "127.0.0.1:36080:9000" ];
+      volumes = [
+        "/var/lib/authentik/data:/data"
+        "/var/lib/authentik/certs:/certs"
+        "/var/lib/authentik/custom-templates:/templates"
+      ];
+      extraOptions = [ "--shm-size=512m" ];
+    };
+
     authentik-worker = {
       image = "ghcr.io/goauthentik/server:2026.2.2";
       cmd = [ "worker" ];

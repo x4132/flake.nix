@@ -166,6 +166,11 @@ in
         domain = "vaultwarden.cocogoat.club";
         port = 35080;
       };
+
+      "auth.cocogoat.club" = mkVirtualHost {
+        domain = "auth.cocogoat.club";
+        port = 36080;
+      };
     };
   };
 }
