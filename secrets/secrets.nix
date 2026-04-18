@@ -19,4 +19,9 @@ in
     system1
   ];
 
+  "authentik.age".publicKeys = [
+    msvc
+    system1
+  ];
+
 }

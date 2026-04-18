@@ -19,5 +19,25 @@
       ];
       extraOptions = ["--cap-add=NET_ADMIN"];
     };
+
+    authentik-worker = {
+      image = "ghcr.io/goauthentik/server:2026.2.2";
+      cmd = [ "worker" ];
+      environmentFiles = [ config.age.secrets.authentik.path ];
+      volumes = [
+        "/var/lib/authentik/data:/data"
+        "/var/lib/authentik/certs:/certs"
+        "/var/lib/authentik/custom-templates:/templates"
+        "/var/run/docker.sock:/var/run/docker.sock"
+      ];
+      extraOptions = [ "--shm-size=512m" ];
+    };
   };
+
+  systemd.tmpfiles.rules = [
+    "d /var/lib/authentik 0755 root root -"
+    "d /var/lib/authentik/data 0755 root root -"
+    "d /var/lib/authentik/certs 0755 root root -"
+    "d /var/lib/authentik/custom-templates 0755 root root -"
+  ];
 }
