@@ -115,6 +115,7 @@
     microbin.file = "/etc/nixos/secrets/microbin.age";
     miniflux.file = "/etc/nixos/secrets/miniflux.age";
     vaultwarden.file = "/etc/nixos/secrets/vaultwarden.age";
+    authentik.file = "/etc/nixos/secrets/authentik.age";
   };
 
   # Enabled Services
