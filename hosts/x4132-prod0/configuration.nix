@@ -112,10 +112,10 @@
 
   # age secrets
   age.secrets = {
-    microbin.file = "/etc/nixos/secrets/microbin.age";
-    miniflux.file = "/etc/nixos/secrets/miniflux.age";
-    vaultwarden.file = "/etc/nixos/secrets/vaultwarden.age";
-    authentik.file = "/etc/nixos/secrets/authentik.age";
+    microbin.file = ./secrets/microbin.age;
+    miniflux.file = ./secrets/miniflux.age;
+    vaultwarden.file = ./secrets/vaultwarden.age;
+    authentik.file = ./secrets/authentik.age;
   };
 
   # Enabled Services
