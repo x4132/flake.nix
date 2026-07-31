@@ -45,6 +45,26 @@
         ];
       };
 
+      # Framework 13 — build with:
+      # $ sudo darwin-rebuild switch --flake .#framework13
+      darwinConfigurations."framework13" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit self; };
+        modules = [
+          ./hosts/framework13
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              enable = true;
+              enableRosetta = true;
+
+              user = "msvc";
+
+              autoMigrate = true;
+            };
+          }
+        ];
+      };
+
       # Prod server — build with:
       # $ sudo nixos-rebuild switch --flake .#x4132-prod0
       nixosConfigurations.x4132-prod0 = nixpkgs.lib.nixosSystem {
