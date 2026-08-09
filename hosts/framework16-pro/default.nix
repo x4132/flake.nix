@@ -72,6 +72,7 @@
     ))
     pkgs.rsync
     pkgs.duckdb
+    pkgs.buf
 
     pkgs.terraform
     pkgs.terragrunt
@@ -93,7 +94,7 @@
       "gh"
 
       "node"
-
+      "ghidra"
       "mole"
     ];
     casks = [
