@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./graphics.nix
+      ./shell.nix
     ];
 
   # Bootloader.
@@ -69,17 +71,12 @@
     git
     github-cli
     kitty
-    albert
-    waybar
-    mako
-    swww
-    pulseaudio
-    xdg-desktop-portal
-    xdg-desktop-portal-gnome
-    xdg-desktop-portal-gtk
     ffmpeg
-    xdg-utils
-    xwayland-satellite
+    zed-editor
+    amp-cli
+
+    nil
+    nixd
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -89,12 +86,18 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  programs.niri.enable = true;
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  security.sudo.extraRules = [
+    {
+      users = [ "sandbox" ];
+      options = [ "NOPASSWD" ];
+    }
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
