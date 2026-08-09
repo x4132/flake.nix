@@ -25,7 +25,6 @@
       agenix,
     }:
     {
-      # MacBook — build with:
       # $ sudo darwin-rebuild switch --flake .#framework16-pro
       darwinConfigurations."framework16-pro" = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit self; };
@@ -45,7 +44,6 @@
         ];
       };
 
-      # Framework 13 — build with:
       # $ sudo darwin-rebuild switch --flake .#framework13
       darwinConfigurations."framework13" = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit self; };
@@ -65,7 +63,6 @@
         ];
       };
 
-      # Prod server — build with:
       # $ sudo nixos-rebuild switch --flake .#x4132-prod0
       nixosConfigurations.x4132-prod0 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -84,8 +81,11 @@
         ];
       };
 
-      packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-      packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+      nixosConfigurations.sandbox-nuc0 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+	modules = [
+	  ./hosts/sandbox-nuc0/configuration.nix
+	];
+      };
     };
 }
