@@ -69,6 +69,17 @@
     git
     github-cli
     kitty
+    albert
+    waybar
+    mako
+    swww
+    pulseaudio
+    xdg-desktop-portal
+    xdg-desktop-portal-gnome
+    xdg-desktop-portal-gtk
+    ffmpeg
+    xdg-utils
+    xwayland-satellite
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
