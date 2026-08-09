@@ -13,6 +13,9 @@
 
     # server
     agenix.url = "github:ryantm/agenix";
+
+    sandbox-nuc0.url = "path:./hosts/sandbox-nuc0";
+    sandbox-nuc0.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -23,6 +26,7 @@
       nix-darwin,
       nix-homebrew,
       agenix,
+      ...
     }:
     {
       # $ sudo darwin-rebuild switch --flake .#framework16-pro
@@ -81,11 +85,7 @@
         ];
       };
 
-      nixosConfigurations.sandbox-nuc0 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-	modules = [
-	  ./hosts/sandbox-nuc0/configuration.nix
-	];
-      };
+      # $ sudo nixos-rebuild switch --flake .#sandbox-nuc0
+      nixosConfigurations.sandbox-nuc0 = inputs.sandbox-nuc0.nixosConfigurations.sandbox-nuc0;
     };
 }

@@ -174,8 +174,25 @@
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-darwin": "nixpkgs-darwin"
+        "nixpkgs-darwin": "nixpkgs-darwin",
+        "sandbox-nuc0": "sandbox-nuc0"
       }
+    },
+    "sandbox-nuc0": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./hosts/sandbox-nuc0",
+        "type": "path"
+      },
+      "original": {
+        "path": "./hosts/sandbox-nuc0",
+        "type": "path"
+      },
+      "parent": []
     },
     "systems": {
       "locked": {
