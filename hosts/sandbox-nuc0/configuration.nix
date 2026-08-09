@@ -95,7 +95,7 @@
   security.sudo.extraRules = [
     {
       users = [ "sandbox" ];
-      options = [ "NOPASSWD" ];
+      commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ];
     }
   ];
 
