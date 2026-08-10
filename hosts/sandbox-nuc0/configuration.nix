@@ -2,22 +2,47 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./graphics.nix
-      ./shell.nix
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./graphics.nix
+    ./shell.nix
+    ./packages.nix
+  ];
+
+  qt = {
+    enable = true;
+    platformTheme = "kde";
+
+    style = "adwaita-dark";
+  };
+
+  programs.firefox = {
+    enable = true;
+
+    languagePacks = [
+      "en-US"
+      "uk"
+      "ru"
+      "zh-TW"
+      "zh-CN"
     ];
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "sandbox-nuc0"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  services.tailscale.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -54,30 +79,15 @@
   users.users."sandbox" = {
     isNormalUser = true;
     description = "sandbox";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    neovim
-    chezmoi
-    git
-    github-cli
-    kitty
-    ffmpeg
-    zed-editor
-    amp-cli
-
-    nil
-    nixd
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -87,6 +97,8 @@
   #   enableSSHSupport = true;
   # };
 
+  programs.starship.enable = true;
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -95,14 +107,25 @@
   security.sudo.extraRules = [
     {
       users = [ "sandbox" ];
-      commands = [ { command = "ALL"; options = [ "NOPASSWD" ]; } ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
     }
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [
+    8080
+    3000
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

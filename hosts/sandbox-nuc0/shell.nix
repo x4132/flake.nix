@@ -4,13 +4,19 @@
     albert
     waybar
     mako
-    swww
+    awww
     pulseaudio
     xdg-desktop-portal
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
     xdg-utils
     xwayland-satellite
+    pulsemixer
+    swaylock
+    adwaita-icon-theme
+    adwaita-fonts
+    adwaita-qt
+    bibata-cursors
   ];
 
   programs.niri.enable = true;
