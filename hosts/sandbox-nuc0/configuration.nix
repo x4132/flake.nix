@@ -11,6 +11,7 @@
     ./graphics.nix
     ./shell.nix
     ./packages.nix
+    ./niri-notify-focus.nix
   ];
 
   qt = {
@@ -40,6 +41,8 @@
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   hardware.bluetooth.enable = true;
+  hardware.opentabletdriver.enable = true;
+
   services.blueman.enable = true;
 
   services.tailscale.enable = true;
@@ -96,8 +99,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  programs.starship.enable = true;
 
   # List services that you want to enable:
 

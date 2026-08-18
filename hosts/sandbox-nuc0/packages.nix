@@ -1,4 +1,24 @@
 { pkgs, ... }:
+let
+  ampZedProcessCompat = pkgs.writeShellApplication {
+    name = "ps";
+    text = ''
+      if [[ "$*" == "-ax -o pid= -o comm=" ]]; then
+        ${pkgs.procps}/bin/ps "$@" | ${pkgs.gnused}/bin/sed 's/\.zed-editor-wra/zed-editor/'
+      else
+        exec ${pkgs.procps}/bin/ps "$@"
+      fi
+    '';
+  };
+
+  ampWithZedProcessNameCompat = pkgs.writeShellApplication {
+    name = "amp";
+    text = ''
+      export PATH="${ampZedProcessCompat}/bin:$PATH"
+      exec ${pkgs.amp-cli}/bin/amp "$@"
+    '';
+  };
+in
 {
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
@@ -38,7 +58,8 @@
     git
     git-lfs
     github-cli
-    amp-cli
+    # Nix names Zed's wrapped process ".zed-editor-wra", so normalize it for Amp.
+    ampWithZedProcessNameCompat
     tmux
     zellij
     awscli2
@@ -54,6 +75,7 @@
         gke-gcloud-auth-plugin
       ]
     ))
+    sqlite
     duckdb
     buf
     terraform
@@ -74,6 +96,7 @@
     obsidian
     firefox
     helium
+    osu-lazer-bin
 
     # Software Development Applications
     kitty
@@ -88,7 +111,6 @@
     caido-desktop
     burpsuite
     dbeaver-bin
-    starship
 
     # Language Servers, Daemons, Et cetera.
     ## Nix
@@ -112,6 +134,7 @@
 
     ## Rust
     rustup
+    rust-analyzer
 
     ## Node
     nodejs_26
@@ -119,4 +142,8 @@
   ];
 
   virtualisation.docker.enable = true;
+  programs = {
+    nix-ld.enable = true;
+    starship.enable = true;
+  };
 }

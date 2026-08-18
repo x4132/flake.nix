@@ -17,6 +17,7 @@
     adwaita-fonts
     adwaita-qt
     bibata-cursors
+    playerctl
   ];
 
   programs.niri.enable = true;
