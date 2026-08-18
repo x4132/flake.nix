@@ -87,6 +87,7 @@
       "wheel"
       "docker"
     ];
+    openssh.authorizedKeys.keys = import ../../common/authorized-keys.nix;
   };
 
   # Allow unfree packages
