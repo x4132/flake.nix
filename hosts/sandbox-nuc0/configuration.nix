@@ -12,6 +12,9 @@
     ./shell.nix
     ./packages.nix
     ./niri-notify-focus.nix
+    (import ../../common/git-config.nix {
+      signingKey = "/home/sandbox/.ssh/id_ed25519.pub";
+    })
   ];
 
   qt = {
@@ -21,20 +24,9 @@
     style = "adwaita-dark";
   };
 
-  programs.firefox = {
-    enable = true;
-
-    languagePacks = [
-      "en-US"
-      "uk"
-      "ru"
-      "zh-TW"
-      "zh-CN"
-    ];
-  };
-
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable =
+    true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "sandbox-nuc0"; # Define your hostname.

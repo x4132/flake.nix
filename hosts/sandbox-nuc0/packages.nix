@@ -88,13 +88,13 @@ in
     codex
     claude-code
     opencode
+    mongodb
 
     # General Applications
     spotify
     tigervnc
     signal-desktop
     obsidian
-    firefox
     helium
     osu-lazer-bin
 
