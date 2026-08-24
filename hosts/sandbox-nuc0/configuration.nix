@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -24,9 +24,26 @@
     style = "adwaita-dark";
   };
 
+  # Force dark theme for GTK apps
+  programs.dconf = {
+    enable = true;
+    profiles.user.databases = [
+      {
+        settings."org/gnome/desktop/interface" = {
+          color-scheme = "prefer-dark";
+          gtk-theme = "Adwaita-dark";
+        };
+      }
+    ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   # Bootloader.
-  boot.loader.systemd-boot.enable =
-    true;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "sandbox-nuc0"; # Define your hostname.
@@ -97,6 +114,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Enable the GNOME Keyring Secret Stash.
+  services.gnome.gnome-keyring.enable = true;
 
   security.sudo.extraRules = [
     {

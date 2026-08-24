@@ -88,7 +88,9 @@ in
     codex
     claude-code
     opencode
-    mongodb
+    tilt
+    k3d
+    jq
 
     # General Applications
     spotify
@@ -105,7 +107,6 @@ in
     vscode
     ghidra
     github-desktop
-    redisinsight
     headlamp
     mongodb-compass
     caido-desktop
@@ -138,7 +139,8 @@ in
 
     ## Node
     nodejs_26
-    pnpm
+    bun
+    corepack
   ];
 
   virtualisation.docker.enable = true;
