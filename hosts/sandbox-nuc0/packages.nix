@@ -98,6 +98,7 @@ in
     bruno
     direnv
     nix-direnv
+    whois
 
     # General Applications
     spotify
