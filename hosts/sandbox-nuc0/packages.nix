@@ -1,5 +1,7 @@
 { pkgs, ... }:
 let
+  deltaEditor = pkgs.callPackage ./delta.nix { };
+
   ampZedProcessCompat = pkgs.writeShellApplication {
     name = "ps";
     text = ''
@@ -34,6 +36,7 @@ in
     neovim
     nano
     emacs
+    deltaEditor
 
     # General Utilities
     coreutils
@@ -91,6 +94,10 @@ in
     tilt
     k3d
     jq
+    hurl
+    bruno
+    direnv
+    nix-direnv
 
     # General Applications
     spotify

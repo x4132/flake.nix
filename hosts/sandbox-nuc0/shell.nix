@@ -21,4 +21,5 @@
   ];
 
   programs.niri.enable = true;
+  programs.direnv.enable = true;
 }
