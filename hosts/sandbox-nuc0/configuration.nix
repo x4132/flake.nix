@@ -118,6 +118,9 @@
   # Enable the GNOME Keyring Secret Stash.
   services.gnome.gnome-keyring.enable = true;
 
+  # Enable Cloudflare One.
+  services.cloudflare-warp.enable = true;
+
   security.sudo.extraRules = [
     {
       users = [ "sandbox" ];
