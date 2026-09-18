@@ -9,18 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    codex-desktop-linux = {
-      url = "github:ilysenko/codex-desktop-linux";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
 
   outputs =
     {
       nixpkgs,
       helium,
-      codex-desktop-linux,
       ...
     }:
     {
@@ -32,10 +26,6 @@
             nixpkgs.overlays = [
               helium.overlays.default
             ];
-          }
-          codex-desktop-linux.nixosModules.default
-          {
-            programs.codexDesktopLinux.enable = true;
           }
           ./configuration.nix
         ];

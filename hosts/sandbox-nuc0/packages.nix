@@ -107,7 +107,6 @@ in
     obsidian
     helium
     osu-lazer-bin
-    _1password-cli
 
     # Software Development Applications
     kitty
