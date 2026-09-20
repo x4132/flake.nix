@@ -56,6 +56,7 @@ in
     fzf
     bitwarden-cli
     signal-cli
+    openssl
 
     # Software Development Utilities
     git
@@ -99,6 +100,7 @@ in
     direnv
     nix-direnv
     whois
+    consul
 
     # General Applications
     spotify
@@ -155,5 +157,14 @@ in
   programs = {
     nix-ld.enable = true;
     starship.enable = true;
+
+    # 1Password: the modules (not bare packages) create the onepassword-cli
+    # group and the setgid /run/wrappers/bin/op wrapper that the desktop app
+    # requires before it will accept a CLI connection.
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ "sandbox" ];
+    };
   };
 }
