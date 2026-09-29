@@ -101,6 +101,8 @@ in
     nix-direnv
     whois
     consul
+    vault
+    dig
 
     # General Applications
     spotify
