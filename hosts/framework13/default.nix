@@ -60,7 +60,6 @@
     pkgs.bitwarden-cli
     pkgs.git-lfs
     pkgs.google-cloud-sdk
-    pkgs.azure-cli
     pkgs.terraform
     pkgs.terragrunt
 
@@ -86,14 +85,12 @@
       "ffmpeg"
       "gh"
       "node"
-      "deno"
       "mole"
       "cyan"
       "rfidresearchgroup/proxmark3/proxmark3"
       "ghidra"
     ];
     casks = [
-      "adium"
       "burp-suite"
       "bruno"
       "coconutbattery"
@@ -117,19 +114,11 @@
       "affinity"
       "prismlauncher"
       "audacity"
-      "slack"
-      "bambu-studio"
-      "yubico-authenticator"
       "redis-insight"
       "codex-app"
       "signal"
       "bitwarden"
       "moonlight"
-      "preform"
-      "t3-code"
-      "sfm"
-      "homerow"
-      "zbar"
     ];
     taps = [
       "sst/tap"
