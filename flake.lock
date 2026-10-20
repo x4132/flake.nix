@@ -35,12 +35,25 @@
         "type": "github"
       }
     },
+    "framework16-pro": {
+      "inputs": {
+        "nix-darwin": ["nix-darwin"],
+        "nix-homebrew": ["nix-homebrew"],
+        "nixpkgs": ["nixpkgs-darwin"]
+      },
+      "locked": {
+        "path": "./hosts/framework16-pro",
+        "type": "path"
+      },
+      "original": {
+        "path": "./hosts/framework16-pro",
+        "type": "path"
+      },
+      "parent": []
+    },
     "helium": {
       "inputs": {
-        "nixpkgs": [
-          "sandbox-nuc0",
-          "nixpkgs"
-        ],
+        "nixpkgs": ["sandbox-nuc0", "nixpkgs"],
         "nixpkgs-darwin": "nixpkgs-darwin_2",
         "utils": "utils"
       },
@@ -60,9 +73,7 @@
     },
     "nix-darwin": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs-darwin"
-        ]
+        "nixpkgs": ["nixpkgs-darwin"]
       },
       "locked": {
         "lastModified": 1786845137,
@@ -164,6 +175,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "framework16-pro": "framework16-pro",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixpkgs": "nixpkgs_2",
@@ -174,9 +186,7 @@
     "sandbox-nuc0": {
       "inputs": {
         "helium": "helium",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": ["nixpkgs"]
       },
       "locked": {
         "path": "./hosts/sandbox-nuc0",

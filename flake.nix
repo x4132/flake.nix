@@ -16,6 +16,11 @@
 
     sandbox-nuc0.url = "path:./hosts/sandbox-nuc0";
     sandbox-nuc0.inputs.nixpkgs.follows = "nixpkgs";
+
+    framework16-pro.url = "path:./hosts/framework16-pro";
+    framework16-pro.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    framework16-pro.inputs.nix-darwin.follows = "nix-darwin";
+    framework16-pro.inputs.nix-homebrew.follows = "nix-homebrew";
   };
 
   outputs =
@@ -30,23 +35,8 @@
     }:
     {
       # $ sudo darwin-rebuild switch --flake .#framework16-pro
-      darwinConfigurations."framework16-pro" = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit self; };
-        modules = [
-          ./hosts/framework16-pro
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            nix-homebrew = {
-              enable = true;
-              enableRosetta = true;
-
-              user = "johndoe";
-
-              autoMigrate = true;
-            };
-          }
-        ];
-      };
+      darwinConfigurations."framework16-pro" =
+        inputs.framework16-pro.darwinConfigurations."framework16-pro";
 
       # $ sudo darwin-rebuild switch --flake .#framework13
       darwinConfigurations."framework13" = nix-darwin.lib.darwinSystem {
