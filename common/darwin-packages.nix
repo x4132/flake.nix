@@ -39,6 +39,7 @@
     git-lfs
     terraform
     terragrunt
+    amp-cli
 
     autoconf
   ];
