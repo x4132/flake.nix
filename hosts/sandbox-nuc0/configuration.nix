@@ -118,6 +118,9 @@
   # Enable the GNOME Keyring Secret Stash.
   services.gnome.gnome-keyring.enable = true;
 
+  # Enable Cloudflare One.
+  services.cloudflare-warp.enable = true;
+
   security.sudo.extraRules = [
     {
       users = [ "sandbox" ];
@@ -139,6 +142,7 @@
   networking.firewall.allowedTCPPorts = [
     8080
     3000
+    3773
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
