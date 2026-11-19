@@ -42,6 +42,7 @@
     amp-cli
     tio
     direnv
+    nix-direnv
 
     autoconf
   ];
