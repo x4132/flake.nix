@@ -57,6 +57,8 @@ in
     bitwarden-cli
     signal-cli
     openssl
+    zip
+    unzip
 
     # Software Development Utilities
     git
