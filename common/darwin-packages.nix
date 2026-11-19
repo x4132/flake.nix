@@ -40,6 +40,8 @@
     terraform
     terragrunt
     amp-cli
+    tio
+    direnv
 
     autoconf
   ];
@@ -73,6 +75,7 @@
       "burp-suite"
       "mx-power-gadget"
       "t3-code"
+      "detachhead/tap/rebased"
     ];
     onActivation.cleanup = "zap";
   };
