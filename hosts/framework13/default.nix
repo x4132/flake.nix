@@ -16,11 +16,10 @@
     pkgs.pipx
 
     # C/C++ and embedded development
-    pkgs.libsigrok
-    pkgs.sigrok-cli
+    pkgs.cmake
+    pkgs.pkg-config
     pkgs.esptool
     pkgs.tio
-    pkgs.openocd
 
     # Lua
     pkgs.lua
@@ -48,7 +47,7 @@
       "syncthing"
       "ffmpeg"
       "cyan"
-      "rfidresearchgroup/proxmark3/proxmark3"
+      "ghidra"
     ];
     casks = [
       "bruno"
@@ -59,14 +58,16 @@
       "tunnelblick"
       "wireshark-app"
       "iina"
+      "nikitabobko/tap/aerospace"
       "affinity"
       "prismlauncher"
       "audacity"
       "moonlight"
+      "obs"
+      "caido"
     ];
     taps = [
       "sst/tap"
-      "nikitabobko/tap"
     ];
   };
 
