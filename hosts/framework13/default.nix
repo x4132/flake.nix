@@ -37,6 +37,7 @@
     pkgs.netcat
     pkgs.pngcheck
     pkgs.nmap
+    pkgs.sleuthkit
   ];
 
   # host-specific homebrew (merged with common/darwin-packages.nix)
